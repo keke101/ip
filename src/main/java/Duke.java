@@ -39,11 +39,19 @@ public class Duke {
         System.out.println("Bye bye! See you in my gameses~");
     }
 
+    /**
+     * Adds new task to the list
+     * @param name Name of the new task
+     */
     public static void addTasks(String name) {
         tasks[listCount++] = new Task(name);
         System.out.println("Okey Dokey! Added: " + name);
     }
 
+    /**
+     * Set the task as done and prints the information
+     * @param order Order of the task inside the list
+     */
     public static void setTaskDone(int order) {
         int index = order - 1;
         if (index >= 0 && index < listCount) {
@@ -55,7 +63,9 @@ public class Duke {
         }
     }
 
-
+    /**
+     * Prints the entire list of tasks
+     */
     public static void printList() {
         System.out.println("Here we go! The list of tasks:");
         for (int i = 0; i < listCount; i++) {
