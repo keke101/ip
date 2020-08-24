@@ -1,12 +1,15 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Duke {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String[] list = new String[100];
-        int listCount = 0;
         String input;
+        Task[] tasks = new Task[100];
+        int listCount = 0;
+        Pattern pattern = Pattern.compile("^done \\d$");
         String logo = " .----------------.  .----------------.  .----------------.  .----------------.  .----------------. \n" +
                 "| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |\n" +
                 "| | ____    ____ | || |      __      | || |  _______     | || |     _____    | || |     ____     | |\n" +
@@ -23,19 +26,47 @@ public class Duke {
         input = in.nextLine();
         while (!input.equals("bye")) {
             if ("list".equals(input)) {
-                printList(list, listCount);
+                printList(tasks, listCount);
+            } else if (pattern.matcher(input).find()) {
+                String strOrder = input.substring(input.indexOf(' ') + 1);
+                int order = Integer.parseInt(strOrder);
+                setTaskDone(tasks, order, listCount);
             } else {
-                list[listCount++] = input;
-                System.out.println("Okey Dokey! Added: " + input);
+                listCount = addTasks(tasks, input, listCount);
             }
             input = in.nextLine();
         }
         System.out.println("Bye bye! See you in my gameses~");
     }
 
-    public static void printList(String[] list, int listCount) {
+    public static int addTasks(Task[] tasks, String name, int size) {
+        tasks[size++] = new Task(name);
+        System.out.println("Okey Dokey! Added: " + name);
+        return size;
+    }
+
+    public static void setTaskDone(Task[] tasks, int order, int size) {
+        int index = order - 1;
+        if (index >= 0 && index < size) {
+            tasks[index].setDone(true);
+            System.out.print("Wa-hoo! The following task is done:" + System.lineSeparator() + "\t");
+            printTask(tasks[index]);
+        } else {
+            System.out.println("Oh no! There is no such task!");
+        }
+    }
+
+    public static void printList(Task[] tasks, int listCount) {
         for (int i = 0; i < listCount; i++) {
-            System.out.printf("%d. %s%n", i+1, list[i]);
+            Task task = tasks[i];
+            System.out.print(Integer.toString(i + 1) + ".");
+            printTask(task);
+        }
+    }
+
+    public static void printTask(Task task) {
+        if (task != null) {
+            System.out.println(String.format("[%c] %s", (task.isDone() ? '✓' : '✗'), task.getName()));
         }
     }
 }
