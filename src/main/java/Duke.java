@@ -3,11 +3,12 @@ import java.util.regex.Pattern;
 
 public class Duke {
 
+    private static Task[] tasks = new Task[100];
+    private static int listCount = 0;
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String input;
-        Task[] tasks = new Task[100];
-        int listCount = 0;
         Pattern pattern = Pattern.compile("^done \\d$");
         String logo = " .----------------.  .----------------.  .----------------.  .----------------.  .----------------. \n" +
                 "| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |\n" +
@@ -24,29 +25,28 @@ public class Duke {
         System.out.println("It's-a me, Mario! \nWoohoo! What can I do for you?");
         input = in.nextLine();
         while (!input.equals("bye")) {
-            if ("list".equals(input)) {
-                printList(tasks, listCount);
-            } else if (pattern.matcher(input).find()) {
+            if ("list".equals(input)) { //check if it is a list command
+                printList();
+            } else if (pattern.matcher(input).find()) { //check if it is a done command (e.g. done <positive integer>
                 String strOrder = input.substring(input.indexOf(' ') + 1);
                 int order = Integer.parseInt(strOrder);
-                setTaskDone(tasks, order, listCount);
-            } else {
-                listCount = addTasks(tasks, input, listCount);
+                setTaskDone(order);
+            } else { //if not, add as task
+                addTasks(input);
             }
             input = in.nextLine();
         }
         System.out.println("Bye bye! See you in my gameses~");
     }
 
-    public static int addTasks(Task[] tasks, String name, int size) {
-        tasks[size++] = new Task(name);
+    public static void addTasks(String name) {
+        tasks[listCount++] = new Task(name);
         System.out.println("Okey Dokey! Added: " + name);
-        return size;
     }
 
-    public static void setTaskDone(Task[] tasks, int order, int size) {
+    public static void setTaskDone(int order) {
         int index = order - 1;
-        if (index >= 0 && index < size) {
+        if (index >= 0 && index < listCount) {
             tasks[index].markAsDone();
             System.out.println("Wa-hoo! The following task is done:"
                     + System.lineSeparator() + "\t" + tasks[index].toString());
@@ -55,7 +55,7 @@ public class Duke {
         }
     }
 
-    public static void printList(Task[] tasks, int listCount) {
+    public static void printList() {
         for (int i = 0; i < listCount; i++) {
             Task task = tasks[i];
             System.out.println(Integer.toString(i + 1) + "." + task.toString());
