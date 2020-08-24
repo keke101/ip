@@ -48,9 +48,9 @@ public class Duke {
     public static void setTaskDone(Task[] tasks, int order, int size) {
         int index = order - 1;
         if (index >= 0 && index < size) {
-            tasks[index].setDone(true);
-            System.out.print("Wa-hoo! The following task is done:" + System.lineSeparator() + "\t");
-            printTask(tasks[index]);
+            tasks[index].markAsDone();
+            System.out.println("Wa-hoo! The following task is done:"
+                    + System.lineSeparator() + "\t" + tasks[index].toString());
         } else {
             System.out.println("Oh no! There is no such task!");
         }
@@ -59,14 +59,7 @@ public class Duke {
     public static void printList(Task[] tasks, int listCount) {
         for (int i = 0; i < listCount; i++) {
             Task task = tasks[i];
-            System.out.print(Integer.toString(i + 1) + ".");
-            printTask(task);
-        }
-    }
-
-    public static void printTask(Task task) {
-        if (task != null) {
-            System.out.println(String.format("[%c] %s", (task.isDone() ? '✓' : '✗'), task.getName()));
+            System.out.println(Integer.toString(i + 1) + "." + task.toString());
         }
     }
 }

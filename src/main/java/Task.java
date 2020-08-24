@@ -25,4 +25,16 @@ public class Task {
     public void setDone(boolean done) {
         isDone = done;
     }
+
+    public void markAsDone() {
+        setDone(true);
+    }
+
+    public String getStatusIcon() {
+        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+    }
+
+    public String toString() {
+        return String.format("[%s] %s", getStatusIcon(), getName());
+    }
 }
