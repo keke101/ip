@@ -1,4 +1,6 @@
 public class Task {
+    private static final String TICK_SYMBOL = "\u2713";
+    private static final String X_SYMBOL = "\u2718";
     protected String name;
     protected boolean isDone;
 
@@ -75,7 +77,7 @@ public class Task {
      * @return Tick if isDone == true, cross if isDone == false
      */
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        return (isDone ? TICK_SYMBOL : X_SYMBOL ); //return tick or X symbols
     }
 
     /**
