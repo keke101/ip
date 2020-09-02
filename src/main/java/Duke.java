@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Duke {
 
@@ -8,8 +7,6 @@ public class Duke {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Pattern donePtn = Pattern.compile("^done \\d$"); //stands for donePattern
-        Pattern Ptn = Pattern.compile("^done \\d$"); //stands for donePattern
         String input;
         printWelcomeMsg();
         input = in.nextLine();
