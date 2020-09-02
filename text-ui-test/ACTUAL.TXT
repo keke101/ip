@@ -57,6 +57,4 @@ Oh, no! A valid input please~
 Oh, no! A valid input please~
 Oh, no! You didn't specify which task you are done with!
 Oh, no! There is no such task!
-Mama Mia! You have already done this task~
-	[T][✓] borrow book 
 Bye bye! See you in my gameses~
