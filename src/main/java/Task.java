@@ -1,9 +1,14 @@
 public class Task {
-    private String name;
-    private boolean isDone;
+    protected String name;
+    protected boolean isDone;
+
+    public enum Type {
+        DEADLINE, EVENT, TODO
+    }
 
     /**
      * Create a new task with provided name and isDone as false
+     *
      * @param name Name of the task
      */
     public Task(String name) {
@@ -12,7 +17,8 @@ public class Task {
 
     /**
      * Create a new task with provided name and isDone value
-     * @param name Name of task
+     *
+     * @param name   Name of task
      * @param isDone Done status of the task
      */
     public Task(String name, boolean isDone) {
@@ -22,6 +28,7 @@ public class Task {
 
     /**
      * Returns the name of the task
+     *
      * @return Name of the task
      */
     public String getName() {
@@ -30,14 +37,16 @@ public class Task {
 
     /**
      * Sets the name of the task
+     *
      * @param name Name of the Task
      */
     public void setName(String name) {
-        this.name = name;
+        this.name = name.trim();
     }
 
     /**
      * Return done status of the task
+     *
      * @return isDone value
      */
     public boolean isDone() {
@@ -46,6 +55,7 @@ public class Task {
 
     /**
      * Set the isDone boolean of the task
+     *
      * @param done New done status of task
      */
     public void setDone(boolean done) {
@@ -61,6 +71,7 @@ public class Task {
 
     /**
      * Get the status icon depending on isDone
+     *
      * @return Tick if isDone == true, cross if isDone == false
      */
     public String getStatusIcon() {
@@ -69,6 +80,7 @@ public class Task {
 
     /**
      * Returns a formatted string of the task
+     *
      * @return [x] Name
      */
     public String toString() {
