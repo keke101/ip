@@ -118,21 +118,27 @@ public class Duke {
      * @param args Arguments that are passed with the type
      */
     public static void addTask(Task.Type type, String args) {
-        switch (type) {
-        case DEADLINE:
-            tasks[listCount] = createDeadline(args);
-            break;
-        case TODO:
-            tasks[listCount] = createTodo(args);
-            break;
-        case EVENT:
-            tasks[listCount] = createEvent(args);
-            break;
-        }
-        if (tasks[listCount] != null) {
+        try {
+            switch (type) {
+            case DEADLINE:
+                tasks[listCount] = createDeadline(args);
+                break;
+            case TODO:
+                tasks[listCount] = createTodo(args);
+                break;
+            case EVENT:
+                tasks[listCount] = createEvent(args);
+                break;
+            }
             System.out.println("Okey Dokey! Added: " + tasks[listCount++]);
-        } else {
-            System.out.println("Oh, no! A valid input please~");
+        } catch (AddDeadlineException ade) {
+            System.out.println("Oh, no! Deadline's /by cannot be empty!");
+        } catch (AddEventException aee) {
+            System.out.println("Oh, no! Event's /at cannot be empty!");
+        } catch (EmptyNameException ene) {
+            System.out.println("Oh, no! Task cannot be created without a name!");
+        } catch (NullPointerException npe) {
+            System.out.println("Oh, no! More arguments is needed!");
         }
     }
 
@@ -142,16 +148,21 @@ public class Duke {
      * @param args Arguments of the command
      * @return Newly created deadline
      */
-    public static Deadline createDeadline(String args) {
-        if (args == null) {
-            return null;
+    public static Deadline createDeadline(String args) throws EmptyNameException, AddDeadlineException {
+        String[] argArr = args.split(" /by ");
+        String name;
+        String by;
+        name = argArr[0].trim();
+        if (name.equals("")) {
+            throw new EmptyNameException();
         }
-        String[] argArr = args.split("/by");
         if (argArr.length != 2) {
-            return null;
+            throw new AddDeadlineException();
         }
-        String name = argArr[0];
-        String by = argArr[1];
+        by = argArr[1].trim();
+        if (by.equals("")) {
+            throw new AddDeadlineException();
+        }
         return new Deadline(name, by);
     }
 
@@ -161,7 +172,11 @@ public class Duke {
      * @param name Name of the to-do task
      * @return Newly created to-do
      */
-    public static Todo createTodo(String name) {
+    public static Todo createTodo(String name) throws EmptyNameException {
+        name = name.trim();
+        if (name.equals("")) {
+            throw new EmptyNameException();
+        }
         return new Todo(name);
     }
 
@@ -171,16 +186,21 @@ public class Duke {
      * @param args Arguments of the command
      * @return Newly created event
      */
-    public static Event createEvent(String args) {
-        if (args == null) {
-            return null;
+    public static Event createEvent(String args) throws EmptyNameException, AddEventException {
+        String[] argArr = args.split(" /at ");
+        String name;
+        String at;
+        name = argArr[0].trim();
+        if (name.equals("")) {
+            throw new EmptyNameException();
         }
-        String[] argArr = args.split("/at");
         if (argArr.length != 2) {
-            return null;
+            throw new AddEventException();
         }
-        String name = argArr[0];
-        String at = argArr[1];
+        at = argArr[1].trim();
+        if (at.equals("")) {
+            throw new AddEventException();
+        }
         return new Event(name, at);
     }
 }

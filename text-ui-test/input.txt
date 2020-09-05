@@ -1,9 +1,9 @@
+list
 todo borrow book
 list
 deadline return book /by Sunday
 done 1
 event project meeting /at Mon 2-4pm
-list
 deadline do homework /by no idea :-p
 list
 done 2
@@ -11,11 +11,17 @@ done 3
 list
 done 4
 list
+done 4
 abc
 deadline
+deadline 
 deadline return book
+deadline return book /by
 event
+event 
 event project meeting
+event project meeting /at
+todo
 done
 done 1000
 done 1
