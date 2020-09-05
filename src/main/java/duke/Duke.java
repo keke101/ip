@@ -1,3 +1,13 @@
+package duke;
+
+import duke.exception.AddDeadlineException;
+import duke.exception.AddEventException;
+import duke.exception.EmptyNameException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.util.Scanner;
 
 public class Duke {
@@ -102,7 +112,7 @@ public class Duke {
         for (int i = 0; i < listCount; i++) {
             Task task = tasks[i];
             int order = i + 1;
-            if (task.isDone) {
+            if (task.isDone()) {
                 doneCount++;
             }
             System.out.println(String.format("\t%d. %s", order, task.toString()));

@@ -1,3 +1,5 @@
+package duke.task;
+
 public class Task {
     private static final String TICK_SYMBOL = "\u2713";
     private static final String X_SYMBOL = "\u2718";
@@ -77,7 +79,7 @@ public class Task {
      * @return Tick if isDone == true, cross if isDone == false
      */
     public String getStatusIcon() {
-        return (isDone ? TICK_SYMBOL : X_SYMBOL ); //return tick or X symbols
+        return (isDone ? TICK_SYMBOL : X_SYMBOL); //return tick or X symbols
     }
 
     /**
