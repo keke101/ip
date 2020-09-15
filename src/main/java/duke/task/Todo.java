@@ -21,6 +21,16 @@ public class Todo extends Task {
         super(name, isDone);
     }
 
+    /**
+     * Returns the formatted raw data for saving to hard disk
+     *
+     * @return String containing the formatted raw data
+     */
+    @Override
+    public String getRawData() {
+        return String.format("T | %s", super.getRawData());
+    }
+
     @Override
     public String toString() {
         return String.format("[T]%s ", super.toString());

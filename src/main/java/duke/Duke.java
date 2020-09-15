@@ -8,14 +8,22 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
 
     private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
+        loadFromDisk();
         printWelcomeMsg();
         waitForCommand();
         System.out.println("Bye bye! See you in my gameses~");
@@ -95,6 +103,7 @@ public class Duke {
             } else {
                 task.markAsDone();
                 System.out.println("We did it! Good job little guy.");
+                saveToDisk();
             }
             System.out.println("\t" + task);
         } catch (NumberFormatException nfe) {
@@ -121,6 +130,55 @@ public class Duke {
         System.out.printf("You have %d tasks and you completed %d of them%n", tasks.size(), doneCount);
     }
 
+    /**
+     * Save the current list of tasks to the file "data/duke.txt" on the disk
+     */
+    private static void saveToDisk() {
+        try {
+            //Check if directory exists if not create it
+            checkDataDir();
+            FileWriter fw = new FileWriter("./data/duke.txt");
+            for (Task task : tasks) {
+                String rawData = task.getRawData() + System.lineSeparator();
+                fw.append(rawData);
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Fail to save data to disk");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Load data from a file "data/duke.txt" on the disk
+     */
+    private static void loadFromDisk() {
+        try {
+            File f = new File("./data/duke.txt");
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                String line = s.nextLine();
+                Task task = Task.decodeTask(line);
+                if (task != null) { //If this task is not invalid
+                    tasks.add(task);
+                }
+            }
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("Data file not found");
+        }
+    }
+
+    /**
+     * Check if data/ directory exists, if it does not exist, create it
+     *
+     * @throws IOException Throws if there are any IO exception
+     */
+    private static void checkDataDir() throws IOException {
+        Path path = Paths.get("./data");
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
+        }
+    }
 
     /**
      * Adds new task to the list
@@ -142,6 +200,7 @@ public class Duke {
                 break;
             }
             System.out.println("Okey Dokey! Added: " + tasks.get(tasks.size() - 1));
+            saveToDisk();
         } catch (AddDeadlineException ade) {
             System.out.println("Oh, no! Deadline's /by cannot be empty!");
         } catch (AddEventException aee) {

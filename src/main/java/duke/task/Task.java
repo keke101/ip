@@ -1,8 +1,16 @@
 package duke.task;
 
+import duke.exception.DecodeTaskException;
+
+import java.util.regex.Matcher;
+
 public class Task {
     private static final String TICK_SYMBOL = "\u2713";
     private static final String X_SYMBOL = "\u2718";
+    protected static final String ESCAPED_PIPE_REPLACE = Matcher.quoteReplacement("\\|");
+    protected static final String DELIMITER_PIPE = " \\| ";
+    protected static final String ESCAPED_PIPE_REGEX = "\\\\\\|";
+
     protected String name;
     protected boolean isDone;
 
@@ -80,6 +88,133 @@ public class Task {
      */
     public String getStatusIcon() {
         return (isDone ? TICK_SYMBOL : X_SYMBOL); //return tick or X symbols
+    }
+
+    /**
+     * Returns the formatted raw data for saving to hard disk
+     *
+     * @return String containing the formatted raw data
+     */
+    public String getRawData() {
+        String escapedName = escapePipe(name); //Search for any occurrence of | and escape it with \
+        return String.format("%d | %s", isDone ? 1 : 0, escapedName);
+    }
+
+    /**
+     * Decode the raw data and return the respective object of the task
+     *
+     * @param rawData Raw data for decoding
+     * @return Respective object of the task (e.g. Event, Deadline, To-do)
+     */
+    public static Task decodeTask(String rawData) {
+        String[] fields = decodeRawData(rawData);
+        String type = fields[0];
+        try {
+            switch (type) {
+            case "T":
+                return decodeTodo(fields);
+            case "E":
+                return decodeEvent(fields);
+            case "D":
+                return decodeDeadline(fields);
+            default: //Invalid type
+                return null;
+            }
+        } catch (DecodeTaskException dte) {
+            return null;
+        }
+    }
+
+    /**
+     * Decode the raw data into array of string for further processing
+     * Handles the special character pipe ("|")
+     *
+     * @param rawData Raw data for decoding
+     * @return Array of string with special character processed
+     */
+    private static String[] decodeRawData(String rawData) {
+        String[] splitData = rawData.split(DELIMITER_PIPE, 4);
+        for (int i = 0; i < splitData.length; i++) { //Remove any escaped | ('\|')
+            splitData[i] = splitData[i].replaceAll(ESCAPED_PIPE_REGEX, "|");
+        }
+        return splitData;
+    }
+
+    /**
+     * Decode the To-do task from the decoded raw data
+     *
+     * @param fields Decoded raw data
+     * @return To-do object
+     * @throws DecodeTaskException One or more of the field(s) contain invalid data
+     */
+    private static Todo decodeTodo(String[] fields) throws DecodeTaskException {
+        if (fields.length != 3) { //Invalid data
+            throw new DecodeTaskException();
+        }
+        String name = fields[2];
+        boolean isDone = decodeIsDone(fields[1]);
+        return new Todo(name, isDone);
+    }
+
+    /**
+     * Decode the Event task from the decoded raw data
+     *
+     * @param fields Decoded raw data
+     * @return Event object
+     * @throws DecodeTaskException One or more of the field(s) contain invalid data
+     */
+    private static Event decodeEvent(String[] fields) throws DecodeTaskException {
+        if (fields.length != 4) { //Invalid data
+            throw new DecodeTaskException();
+        }
+        String name = fields[2];
+        boolean isDone = decodeIsDone(fields[1]);
+        String at = fields[3];
+        return new Event(name, isDone, at);
+    }
+
+    /**
+     * Decode the Deadline task from the decoded raw data
+     *
+     * @param fields Decoded raw data
+     * @return Deadline object
+     * @throws DecodeTaskException One or more of the field(s) contain invalid data
+     */
+    private static Deadline decodeDeadline(String[] fields) throws DecodeTaskException {
+        if (fields.length != 4) { //Invalid data
+            throw new DecodeTaskException();
+        }
+        String name = fields[2];
+        boolean isDone = decodeIsDone(fields[1]);
+        String by = fields[3];
+        return new Deadline(name, isDone, by);
+    }
+
+    /**
+     * Decode the raw form of isDone (either "0" or "1") into boolean
+     *
+     * @param isDoneStr raw form of isDone ("0" or "1")
+     * @return Return the boolean form of isDone
+     * @throws DecodeTaskException If raw form is not "0" or "1"
+     */
+    private static boolean decodeIsDone(String isDoneStr) throws DecodeTaskException {
+        if (isDoneStr.equals("0")) {
+            return false;
+        } else if (isDoneStr.equals("1")) {
+            return true;
+        } else { //Invalid data, the isDoneStr should only contain either "0" or "1" without any spaces
+            throw new DecodeTaskException();
+        }
+    }
+
+    /**
+     * Escape every occurrences of pipe ('|') in the string with \
+     *
+     * @param str String to escape the pip
+     * @return Original string with each occurrence of | replaced with \|
+     */
+    protected static String escapePipe(String str) {
+        return str.replaceAll("\\|", ESCAPED_PIPE_REPLACE);
     }
 
     /**
