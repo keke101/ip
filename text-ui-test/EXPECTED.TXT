@@ -60,7 +60,19 @@ Oh, no! Event's /at cannot be empty!
 Oh, no! Event's /at cannot be empty!
 Oh, no! More arguments is needed!
 Oh, no! You didn't specify which task you are done with!
-Oh, no! There is no such task!
+Oh, no! This task does not exist!
 Mama Mia! You have already done this task~
 	[T][✓] borrow book 
+Alrighty! The following task is gone!
+	[D][✓] return book (by: Sunday)
+Now you have 3 tasks in the list.
+Here we go! These are the tasks you have:
+	1. [T][✓] borrow book 
+	2. [E][✓] project meeting (at: Mon 2-4pm)
+	3. [D][✓] do homework (by: no idea :-p)
+You have 3 tasks and you completed 3 of them
+Oh, no! I can't delete a task that does not exist!
+Oh, no! I can't delete a task that does not exist!
+Oh, no! I don't get what you are trying to say!
+Oh, no! You didn't specify which task you want to delete!
 Bye bye! See you in my gameses~

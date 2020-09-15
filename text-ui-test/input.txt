@@ -25,4 +25,10 @@ todo
 done
 done 1000
 done 1
+delete 2
+list
+delete -1
+delete 4
+delete a
+delete
 bye
