@@ -42,6 +42,17 @@ public class Deadline extends Task {
         this.by = by.trim();
     }
 
+    /**
+     * Returns the formatted raw data for saving to hard disk
+     *
+     * @return String containing the formatted raw data
+     */
+    @Override
+    public String getRawData() {
+        String escapedBy = escapePipe(by); //Search for any occurrence of | and escape it with \ 
+        return String.format("D | %s | %s", super.getRawData(), escapedBy);
+    }
+
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), by);
