@@ -115,9 +115,9 @@ public class Duke {
             if (task.isDone()) {
                 doneCount++;
             }
-            System.out.println(String.format("\t%d. %s", order, task.toString()));
+            System.out.printf("\t%d. %s%n", order, task.toString());
         }
-        System.out.println(String.format("You have %d tasks and you completed %d of them", listCount, doneCount));
+        System.out.printf("You have %d tasks and you completed %d of them%n", listCount, doneCount);
     }
 
 
