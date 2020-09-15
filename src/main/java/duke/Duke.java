@@ -229,6 +229,7 @@ public class Duke {
             System.out.printf("Alrighty! The following task is gone!%n" +
                     "\t%s%n" +
                     "Now you have %d tasks in the list.%n", deletedTask, tasks.size());
+            saveToDisk();
         } catch (NumberFormatException nfe) {
             System.out.println("Oh, no! I don't get what you are trying to say!");
         } catch (IndexOutOfBoundsException ioobe) {
