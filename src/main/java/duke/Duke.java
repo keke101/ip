@@ -8,12 +8,12 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
-    private static Task[] tasks = new Task[100];
-    private static int listCount = 0;
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
         printWelcomeMsg();
@@ -35,6 +35,9 @@ public class Duke {
                 break;
             case "done":
                 setTaskDone(arguments);
+                break;
+            case "delete":
+                deleteTask(arguments);
                 break;
             case "deadline":
                 addTask(Task.Type.DEADLINE, arguments);
@@ -85,21 +88,19 @@ public class Duke {
         }
         try {
             order = Integer.parseInt(orderStr);
-        } catch (NumberFormatException nfe) {
-            System.out.println("Oh, no! I don't get what you are trying to say!");
-            return; //orderStr is not an integer
-        }
-        int index = order - 1;
-        if (index >= 0 && index < listCount) {
-            if (tasks[index].isDone()) {
+            int index = order - 1;
+            Task task = tasks.get(index);
+            if (task.isDone()) {
                 System.out.println("Mama Mia! You have already done this task~");
             } else {
-                tasks[index].markAsDone();
+                task.markAsDone();
                 System.out.println("We did it! Good job little guy.");
             }
-            System.out.println("\t" + tasks[index].toString());
-        } else {
-            System.out.println("Oh, no! There is no such task!");
+            System.out.println("\t" + task);
+        } catch (NumberFormatException nfe) {
+            System.out.println("Oh, no! I don't get what you are trying to say!");
+        } catch (IndexOutOfBoundsException ioobe) {
+            System.out.println("Oh, no! This task does not exist!");
         }
     }
 
@@ -109,15 +110,15 @@ public class Duke {
     private static void printList() {
         int doneCount = 0;
         System.out.println("Here we go! These are the tasks you have:");
-        for (int i = 0; i < listCount; i++) {
-            Task task = tasks[i];
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
             int order = i + 1;
             if (task.isDone()) {
                 doneCount++;
             }
-            System.out.println(String.format("\t%d. %s", order, task.toString()));
+            System.out.printf("\t%d. %s%n", order, task);
         }
-        System.out.println(String.format("You have %d tasks and you completed %d of them", listCount, doneCount));
+        System.out.printf("You have %d tasks and you completed %d of them%n", tasks.size(), doneCount);
     }
 
 
@@ -131,16 +132,16 @@ public class Duke {
         try {
             switch (type) {
             case DEADLINE:
-                tasks[listCount] = createDeadline(args);
+                tasks.add(createDeadline(args));
                 break;
             case TODO:
-                tasks[listCount] = createTodo(args);
+                tasks.add(createTodo(args));
                 break;
             case EVENT:
-                tasks[listCount] = createEvent(args);
+                tasks.add(createEvent(args));
                 break;
             }
-            System.out.println("Okey Dokey! Added: " + tasks[listCount++]);
+            System.out.println("Okey Dokey! Added: " + tasks.get(tasks.size() - 1));
         } catch (AddDeadlineException ade) {
             System.out.println("Oh, no! Deadline's /by cannot be empty!");
         } catch (AddEventException aee) {
@@ -149,6 +150,30 @@ public class Duke {
             System.out.println("Oh, no! Task cannot be created without a name!");
         } catch (NullPointerException npe) {
             System.out.println("Oh, no! More arguments is needed!");
+        }
+    }
+
+    /**
+     * Delete a task from the array list "tasks"
+     * @param orderStr Order of the task inside the list
+     */
+    public static void deleteTask(String orderStr) {
+        int order;
+        if (orderStr == null) {
+            System.out.println("Oh, no! You didn't specify which task you want to delete!");
+            return;
+        }
+        try {
+            order = Integer.parseInt(orderStr);
+            int index = order - 1;
+            Task deletedTask = tasks.remove(index);
+            System.out.printf("Alrighty! The following task is gone!%n" +
+                    "\t%s%n" +
+                    "Now you have %d tasks in the list.%n", deletedTask, tasks.size());
+        } catch (NumberFormatException nfe) {
+            System.out.println("Oh, no! I don't get what you are trying to say!");
+        } catch (IndexOutOfBoundsException ioobe) {
+            System.out.println("Oh, no! I can't delete a task that does not exist!");
         }
     }
 

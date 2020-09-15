@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+#Clear previously compiled binaries
+if [ -e "../bin" ]
+then
+  rm -rf ../bin/*
+fi
+
 # create bin directory if it doesn't exist
 if [ ! -d "../bin" ]
 then
@@ -12,6 +18,7 @@ then
     rm ACTUAL.TXT
 fi
 
+
 # compile the code into the bin folder, terminates if error occurred
 if ! javac -cp ../src -Xlint:none -d ../bin ../src/main/java/duke/*.java ../src/main/java/duke/task/*.java ../src/main/java/duke/exception/*.java
 then
@@ -20,7 +27,7 @@ then
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin Duke < input.txt > ACTUAL.TXT
+java -classpath ../bin duke.Duke < input.txt > ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
