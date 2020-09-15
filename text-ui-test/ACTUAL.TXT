@@ -13,40 +13,60 @@
 It's-a me, Mario! 
 Woohoo! What can I do for you?
 Here we go! These are the tasks you have:
-You have 0 tasks and you completed 0 of them
+	1. [T][✓] 123 | lol| haha| 
+	2. [D][✓] 9312 (by: 0213|122 |hehe)
+	3. [E][✘] 2 (at: 3|1 |hhaha)
+	4. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
+You have 4 tasks and you completed 3 of them
 Okey Dokey! Added: [T][✘] borrow book 
 Here we go! These are the tasks you have:
-	1. [T][✘] borrow book 
-You have 1 tasks and you completed 0 of them
+	1. [T][✓] 123 | lol| haha| 
+	2. [D][✓] 9312 (by: 0213|122 |hehe)
+	3. [E][✘] 2 (at: 3|1 |hhaha)
+	4. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
+	5. [T][✘] borrow book 
+You have 5 tasks and you completed 3 of them
 Okey Dokey! Added: [D][✘] return book (by: Sunday)
 We did it! Good job little guy.
 	[T][✓] borrow book 
 Okey Dokey! Added: [E][✘] project meeting (at: Mon 2-4pm)
 Okey Dokey! Added: [D][✘] do homework (by: no idea :-p)
 Here we go! These are the tasks you have:
-	1. [T][✓] borrow book 
-	2. [D][✘] return book (by: Sunday)
-	3. [E][✘] project meeting (at: Mon 2-4pm)
-	4. [D][✘] do homework (by: no idea :-p)
-You have 4 tasks and you completed 1 of them
+	1. [T][✓] 123 | lol| haha| 
+	2. [D][✓] 9312 (by: 0213|122 |hehe)
+	3. [E][✘] 2 (at: 3|1 |hhaha)
+	4. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
+	5. [T][✓] borrow book 
+	6. [D][✘] return book (by: Sunday)
+	7. [E][✘] project meeting (at: Mon 2-4pm)
+	8. [D][✘] do homework (by: no idea :-p)
+You have 8 tasks and you completed 4 of them
 We did it! Good job little guy.
 	[D][✓] return book (by: Sunday)
 We did it! Good job little guy.
 	[E][✓] project meeting (at: Mon 2-4pm)
 Here we go! These are the tasks you have:
-	1. [T][✓] borrow book 
-	2. [D][✓] return book (by: Sunday)
-	3. [E][✓] project meeting (at: Mon 2-4pm)
-	4. [D][✘] do homework (by: no idea :-p)
-You have 4 tasks and you completed 3 of them
+	1. [T][✓] 123 | lol| haha| 
+	2. [D][✓] 9312 (by: 0213|122 |hehe)
+	3. [E][✘] 2 (at: 3|1 |hhaha)
+	4. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
+	5. [T][✓] borrow book 
+	6. [D][✓] return book (by: Sunday)
+	7. [E][✓] project meeting (at: Mon 2-4pm)
+	8. [D][✘] do homework (by: no idea :-p)
+You have 8 tasks and you completed 6 of them
 We did it! Good job little guy.
 	[D][✓] do homework (by: no idea :-p)
 Here we go! These are the tasks you have:
-	1. [T][✓] borrow book 
-	2. [D][✓] return book (by: Sunday)
-	3. [E][✓] project meeting (at: Mon 2-4pm)
-	4. [D][✓] do homework (by: no idea :-p)
-You have 4 tasks and you completed 4 of them
+	1. [T][✓] 123 | lol| haha| 
+	2. [D][✓] 9312 (by: 0213|122 |hehe)
+	3. [E][✘] 2 (at: 3|1 |hhaha)
+	4. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
+	5. [T][✓] borrow book 
+	6. [D][✓] return book (by: Sunday)
+	7. [E][✓] project meeting (at: Mon 2-4pm)
+	8. [D][✓] do homework (by: no idea :-p)
+You have 8 tasks and you completed 7 of them
 Mama Mia! You have already done this task~
 	[D][✓] do homework (by: no idea :-p)
 Oh, no! I don't understand you, what are you trying to do?
