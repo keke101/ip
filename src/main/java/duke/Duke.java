@@ -24,12 +24,19 @@ public class Duke {
         new Duke().run();
     }
 
+    /**
+     * Run the program
+     */
     public void run() {
         init();
         waitAndRunCommand();
         exitProgram();
     }
 
+    /**
+     * Initialise the program
+     * Exits with status 1 if the program fails to create the parent directory for data file
+     */
     private void init() {
         try {
             tasks = new TaskList();
@@ -42,6 +49,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Wait for user input and run the user command upon input
+     * Exits when user types "bye"
+     */
     private void waitAndRunCommand() {
         ui.printWelcomeMessage();
         Command command;
@@ -53,10 +64,20 @@ public class Duke {
         } while (!(command instanceof ExitCommand));
     }
 
+    /**
+     * Executes the following when program is exiting:
+     * 1. Prints good bye message
+     */
     private void exitProgram() {
         ui.printGoodbyeMessage();
     }
 
+    /**
+     * Executes the command and return the result
+     *
+     * @param command CommandObject that specify the command to execute
+     * @return CommandResult object that contains the result of the command
+     */
     private CommandResult executeCommand(Command command) {
         command.setData(tasks);
         CommandResult result = command.execute();

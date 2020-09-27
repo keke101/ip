@@ -12,16 +12,29 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+/**
+ * Storage manager for loading and saving to disk
+ */
 public class Storage {
     private final Path path;
     private final TaskList tasks;
 
+    /**
+     * Create a Storage object to manage loading and saving of data to disk
+     *
+     * @param filename Name of data file
+     * @param tasks    Object to be used for processing
+     * @throws IOException If cannot create the parent directory of the data file
+     */
     public Storage(String filename, TaskList tasks) throws IOException {
         this.path = Paths.get(filename);
         this.tasks = tasks;
         checkParentDir();
     }
 
+    /**
+     * Saves the current data in "tasks" to disk
+     */
     public void save() {
         try {
             checkParentDir();
@@ -38,6 +51,9 @@ public class Storage {
 
     }
 
+    /**
+     * Load the data from the data file to "tasks"
+     */
     public void load() {
         try {
             File f = path.toFile();

@@ -11,6 +11,9 @@ import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.exception.EmptyOrderException;
 
+/**
+ * Command parser
+ */
 public class Parser {
 
     public static final String CMD_ARG_SEPARATOR = " ";
@@ -25,6 +28,12 @@ public class Parser {
     public static final String ERRMSG_DONE_ORDER_EMPTY = "Oh, no! You didn't specify which task you are done with!";
     public static final String ERRMSG_DEL_ORDER_EMPTY = "Oh, no! You didn't specify which task you want to delete!";
 
+    /**
+     * Parse the raw input from user and return the respective command to be executed
+     *
+     * @param input Raw input from user
+     * @return A Command object that is associated to the command
+     */
     public Command parse(String input) {
         String[] temp = input.split(CMD_ARG_SEPARATOR, CMD_ARG_SPLIT_LIMIT);
         String command = temp[0];
@@ -49,10 +58,20 @@ public class Parser {
         }
     }
 
+    /**
+     * List all tasks from the list
+     *
+     * @return ListCommand object
+     */
     public Command prepareList() {
         return new ListCommand();
     }
 
+    /**
+     * Mark an existing task as done
+     *
+     * @return DoneCommand object
+     */
     public Command prepareDone(String args) {
         int order;
         try {
@@ -67,6 +86,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Delete an existing task from the list of tasks
+     *
+     * @param args Raw form of the argument given by user
+     * @return DeleteCommand object
+     */
     public Command prepareDelete(String args) {
         int order;
         try {
@@ -81,6 +106,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Create and add a new To-do task into a list of tasks
+     *
+     * @param args Raw form of the argument given by user
+     * @return AddTodoCommand object
+     */
     public Command prepareAddTodo(String args) {
         if (args == null) {
             return new InvalidCommand(ERRMSG_NOT_ENOUGH_ARGS);
@@ -92,6 +123,12 @@ public class Parser {
         return new AddTodoCommand(name);
     }
 
+    /**
+     * Create and add a new Deadline task into a list of tasks
+     *
+     * @param args Raw form of the argument given by user
+     * @return AddDeadlineCommand object
+     */
     public Command prepareAddDeadline(String args) {
         if (args == null) {
             return new InvalidCommand(ERRMSG_NOT_ENOUGH_ARGS);
@@ -113,6 +150,12 @@ public class Parser {
         return new AddDeadlineCommand(name, by);
     }
 
+    /**
+     * Create and add a new Event task into a list of tasks
+     *
+     * @param args Raw form of the argument given by user
+     * @return AddEventCommand object
+     */
     public Command prepareAddEvent(String args) {
         if (args == null) {
             return new InvalidCommand(ERRMSG_NOT_ENOUGH_ARGS);
@@ -134,6 +177,13 @@ public class Parser {
         return new AddEventCommand(name, at);
     }
 
+    /**
+     * Parse the argument given as order (a positive integer)
+     *
+     * @param arg Raw argument
+     * @return Order (a positive integer)
+     * @throws EmptyOrderException If arg is null
+     */
     private int parseArgsAsOrder(String arg) throws EmptyOrderException {
         if (arg == null) {
             throw new EmptyOrderException();

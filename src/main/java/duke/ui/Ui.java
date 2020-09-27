@@ -12,6 +12,12 @@ public class Ui {
     private final Scanner in;
     private final PrintStream out;
 
+    /**
+     * Create a Ui object that specifies the input stream and output stream
+     * 
+     * @param in Input stream for reading inputs from the user
+     * @param out Output stream for printing feedbacks to the user
+     */
     public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;

@@ -53,6 +53,12 @@ public class Deadline extends Task {
         return String.format("D | %s | %s", super.getRawData(), escapedBy);
     }
 
+    /**
+     * Returns a formatted version of the Deadline for printing
+     * E.g. [D] Assignment 1 (by: Thurs, 1pm)
+     * 
+     * @return formatted version of the Deadline for printing
+     */
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), by);

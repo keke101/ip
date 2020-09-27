@@ -41,6 +41,12 @@ public class Event extends Task {
         return String.format("E | %s | %s", super.getRawData(), escapedAt);
     }
 
+    /**
+     * Returns a formatted version of the Event for printing
+     * E.g. [E] Birthday (at: Thurs, 1pm)
+     *
+     * @return formatted version of the Event for printing
+     */
     @Override
     public String toString() {
         return String.format("[E]%s (at: %s)", super.toString(), at);
