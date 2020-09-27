@@ -14,10 +14,6 @@ public class Task {
     protected String name;
     protected boolean isDone;
 
-    public enum Type {
-        DEADLINE, EVENT, TODO
-    }
-
     /**
      * Create a new task with provided name and isDone as false
      *
