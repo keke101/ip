@@ -2,9 +2,17 @@ package duke.command;
 
 import duke.task.Task;
 
+/**
+ * List all tasks from the list
+ */
 public class ListCommand extends Command {
     public static final String COMMAND = "list";
 
+    /**
+     * Prepare the command for listing all the tasks from the list specified by setData()
+     *
+     * @return CommandResult with the list of tasks in the feedback. retObj will be null
+     */
     @Override
     public CommandResult execute() {
         int doneCount = 0;

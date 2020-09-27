@@ -2,15 +2,28 @@ package duke.command;
 
 import duke.task.Task;
 
+/**
+ * Find tasks that contains specific keyword
+ */
 public class FindCommand extends Command {
     public static final String COMMAND = "find";
 
     private final String keyword;
 
+    /**
+     * Prepare the command for finding tasks that contains specific keyword
+     * 
+     * @param keyword Keyword used for searching tasks
+     */
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }
 
+    /**
+     * Find tasks that contains specific keyword in tasks as specified by setData()
+     * 
+     * @return CommandResult with a success message that contains the list of tasks found
+     */
     @Override
     public CommandResult execute() {
         int order = 1;

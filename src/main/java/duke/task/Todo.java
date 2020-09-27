@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Allows users to create to-do tasks
+ */
 public class Todo extends Task {
 
     /**
@@ -30,7 +33,13 @@ public class Todo extends Task {
     public String getRawData() {
         return String.format("T | %s", super.getRawData());
     }
-
+    
+    /**
+     * Returns a formatted version of the To-do for printing
+     * E.g. [T] Buy shower gel
+     *
+     * @return formatted version of the To-do for printing
+     */
     @Override
     public String toString() {
         return String.format("[T]%s ", super.toString());

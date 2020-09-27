@@ -2,15 +2,29 @@ package duke.command;
 
 import duke.task.Task;
 
+/**
+ * Delete an existing task from the list of tasks
+ */
 public class DeleteCommand extends Command {
     public static final String COMMAND = "delete";
 
     private final int index;
 
+    /**
+     * Prepare the command for deleting an existing task
+     *
+     * @param order Order of the task in the list
+     */
     public DeleteCommand(int order) {
         index = order - 1;
     }
 
+    /**
+     * Delete an existing task from the list of tasks specified by setData()
+     *
+     * @return If success, CommandResult with the deleted task as retObj and a success message.
+     * If fail, CommandResult with failure message
+     */
     @Override
     public CommandResult execute() {
         try {

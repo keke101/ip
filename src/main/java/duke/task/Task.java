@@ -7,6 +7,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 
+/**
+ * Allows a user to create a plain task
+ */
 public class Task {
     public static final String INPUT_DATETIME_FORMAT = "yyyy-MM-dd HHmm";
     public static final String OUTPUT_DATETIME_FORMAT = "MMM dd yyyy HH:mm";
