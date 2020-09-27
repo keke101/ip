@@ -1,13 +1,16 @@
 package duke.task;
 
-public class Event extends Task {
-    protected String at;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String name, String at) {
+public class Event extends Task {
+    protected LocalDateTime at;
+
+    public Event(String name, LocalDateTime at) {
         this(name, false, at);
     }
 
-    public Event(String name, boolean isDone, String at) {
+    public Event(String name, boolean isDone, LocalDateTime at) {
         super(name, isDone);
         setAt(at);
     }
@@ -17,7 +20,7 @@ public class Event extends Task {
      *
      * @return "at" value
      */
-    public String getAt() {
+    public LocalDateTime getAt() {
         return at;
     }
 
@@ -26,8 +29,8 @@ public class Event extends Task {
      *
      * @param at new "at" value
      */
-    public void setAt(String at) {
-        this.at = at.trim();
+    public void setAt(LocalDateTime at) {
+        this.at = at;
     }
 
     /**
@@ -37,8 +40,7 @@ public class Event extends Task {
      */
     @Override
     public String getRawData() {
-        String escapedAt = escapePipe(at); //Search for any occurrence of | and escape it with \ 
-        return String.format("E | %s | %s", super.getRawData(), escapedAt);
+        return String.format("E | %s | %s", super.getRawData(), at.toString());
     }
 
     /**
@@ -49,6 +51,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), at);
+        String dateStr = at.format(DateTimeFormatter.ofPattern(OUTPUT_DATETIME_FORMAT));
+        return String.format("[E]%s (at: %s)", super.toString(), dateStr);
     }
 }

@@ -7,9 +7,14 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.exception.EmptyOrderException;
+import duke.task.Task;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * Command parser
@@ -27,6 +32,8 @@ public class Parser {
     public static final String ERRMSG_UNKNOWN_CMD = "Oh, no! I don't understand you, what are you trying to do?";
     public static final String ERRMSG_DONE_ORDER_EMPTY = "Oh, no! You didn't specify which task you are done with!";
     public static final String ERRMSG_DEL_ORDER_EMPTY = "Oh, no! You didn't specify which task you want to delete!";
+    public static final String ERRMSG_DATETIME_INVALID = String.format("Oh, no! Please follow the follow date format: %s", Task.INPUT_DATETIME_FORMAT);
+    public static final String ERRMSG_KEYWORD_EMPTY = "Oh, no! You have to specify what to find!";
 
     /**
      * Parse the raw input from user and return the respective command to be executed
@@ -39,6 +46,8 @@ public class Parser {
         String command = temp[0];
         String rawArgs = temp.length == 2 ? temp[1] : null;
         switch (command) {
+        case FindCommand.COMMAND:
+            return prepareFind(rawArgs);
         case ListCommand.COMMAND:
             return prepareList();
         case DoneCommand.COMMAND:
@@ -55,6 +64,24 @@ public class Parser {
             return new ExitCommand();
         default:
             return new InvalidCommand(ERRMSG_UNKNOWN_CMD);
+        }
+    }
+
+    /**
+     * Find tasks that contains specific keyword
+     * 
+     * @param args Raw form of the argument given by the user
+     * @return FindCommand object
+     */
+    public Command prepareFind(String args) {
+        try {
+            String keyword = args.trim();
+            if (keyword.equals("")) {
+                return new InvalidCommand(ERRMSG_KEYWORD_EMPTY);
+            }
+            return new FindCommand(keyword);
+        } catch (NullPointerException npe) {
+            return new InvalidCommand(ERRMSG_KEYWORD_EMPTY);
         }
     }
 
@@ -130,24 +157,29 @@ public class Parser {
      * @return AddDeadlineCommand object
      */
     public Command prepareAddDeadline(String args) {
-        if (args == null) {
-            return new InvalidCommand(ERRMSG_NOT_ENOUGH_ARGS);
+        try {
+            if (args == null) {
+                return new InvalidCommand(ERRMSG_NOT_ENOUGH_ARGS);
+            }
+            String[] argArr = args.split(" /by ");
+            String name;
+            String byStr;
+            name = argArr[0].trim();
+            if (name.equals("")) {
+                return new InvalidCommand(ERRMSG_NO_NAME);
+            }
+            if (argArr.length != 2) {
+                return new InvalidCommand(ERRMSG_EMPTY_D_BY);
+            }
+            byStr = argArr[1].trim();
+            if (byStr.equals("")) {
+                return new InvalidCommand(ERRMSG_EMPTY_D_BY);
+            }
+            LocalDateTime by = Task.parseDateStr(byStr);
+            return new AddDeadlineCommand(name, by);
+        } catch (DateTimeParseException dtpe) {
+            return new InvalidCommand(ERRMSG_DATETIME_INVALID);
         }
-        String[] argArr = args.split(" /by ");
-        String name;
-        String by;
-        name = argArr[0].trim();
-        if (name.equals("")) {
-            return new InvalidCommand(ERRMSG_NO_NAME);
-        }
-        if (argArr.length != 2) {
-            return new InvalidCommand(ERRMSG_EMPTY_D_BY);
-        }
-        by = argArr[1].trim();
-        if (by.equals("")) {
-            return new InvalidCommand(ERRMSG_EMPTY_D_BY);
-        }
-        return new AddDeadlineCommand(name, by);
     }
 
     /**
@@ -157,24 +189,29 @@ public class Parser {
      * @return AddEventCommand object
      */
     public Command prepareAddEvent(String args) {
-        if (args == null) {
-            return new InvalidCommand(ERRMSG_NOT_ENOUGH_ARGS);
+        try {
+            if (args == null) {
+                return new InvalidCommand(ERRMSG_NOT_ENOUGH_ARGS);
+            }
+            String[] argArr = args.split(" /at ");
+            String name;
+            String atStr;
+            name = argArr[0].trim();
+            if (name.equals("")) {
+                return new InvalidCommand(ERRMSG_NO_NAME);
+            }
+            if (argArr.length != 2) {
+                return new InvalidCommand(ERRMSG_EMPTY_E_AT);
+            }
+            atStr = argArr[1].trim();
+            if (atStr.equals("")) {
+                return new InvalidCommand(ERRMSG_EMPTY_E_AT);
+            }
+            LocalDateTime at = Task.parseDateStr(atStr);
+            return new AddEventCommand(name, at);
+        } catch (DateTimeParseException dtpe) {
+            return new InvalidCommand(ERRMSG_DATETIME_INVALID);
         }
-        String[] argArr = args.split(" /at ");
-        String name;
-        String at;
-        name = argArr[0].trim();
-        if (name.equals("")) {
-            return new InvalidCommand(ERRMSG_NO_NAME);
-        }
-        if (argArr.length != 2) {
-            return new InvalidCommand(ERRMSG_EMPTY_E_AT);
-        }
-        at = argArr[1].trim();
-        if (at.equals("")) {
-            return new InvalidCommand(ERRMSG_EMPTY_E_AT);
-        }
-        return new AddEventCommand(name, at);
     }
 
     /**

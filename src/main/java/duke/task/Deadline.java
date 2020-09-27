@@ -1,7 +1,11 @@
 package duke.task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-    protected String by;
+
+    protected LocalDateTime by;
 
     /**
      * Creates a new deadline task with specified name, by value and isDone = false
@@ -9,7 +13,7 @@ public class Deadline extends Task {
      * @param name Name of deadline task
      * @param by   When the task needs to be done by
      */
-    public Deadline(String name, String by) {
+    public Deadline(String name, LocalDateTime by) {
         this(name, false, by);
     }
 
@@ -19,7 +23,7 @@ public class Deadline extends Task {
      * @param name Name of deadline task
      * @param by   When the task needs to be done by
      */
-    public Deadline(String name, boolean isDone, String by) {
+    public Deadline(String name, boolean isDone, LocalDateTime by) {
         super(name, isDone);
         setBy(by);
     }
@@ -29,7 +33,7 @@ public class Deadline extends Task {
      *
      * @return "by" value
      */
-    public String getBy() {
+    public LocalDateTime getBy() {
         return by;
     }
 
@@ -38,8 +42,8 @@ public class Deadline extends Task {
      *
      * @param by new "by" value
      */
-    public void setBy(String by) {
-        this.by = by.trim();
+    public void setBy(LocalDateTime by) {
+        this.by = by;
     }
 
     /**
@@ -49,8 +53,7 @@ public class Deadline extends Task {
      */
     @Override
     public String getRawData() {
-        String escapedBy = escapePipe(by); //Search for any occurrence of | and escape it with \ 
-        return String.format("D | %s | %s", super.getRawData(), escapedBy);
+        return String.format("D | %s | %s", super.getRawData(), by.toString());
     }
 
     /**
@@ -61,6 +64,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), by);
+        String dateStr = by.format(DateTimeFormatter.ofPattern(OUTPUT_DATETIME_FORMAT));
+        return String.format("[D]%s (by: %s)", super.toString(), dateStr);
     }
 }
