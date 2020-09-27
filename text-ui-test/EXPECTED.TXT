@@ -14,98 +14,79 @@ It's-a me, Mario!
 Woohoo! What can I do for you?
 Here we go! These are the tasks you have:
 	1. [T][✓] 123 | lol| haha| 
-	2. [D][✓] 9312 (by: 0213|122 |hehe)
-	3. [E][✘] 2 (at: 3|1 |hhaha)
-	4. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
-You have 4 tasks and you completed 3 of them
+You have 1 tasks and you completed 1 of them
 Okey Dokey! Added: [T][✘] borrow book 
 Here we go! These are the tasks you have:
 	1. [T][✓] 123 | lol| haha| 
-	2. [D][✓] 9312 (by: 0213|122 |hehe)
-	3. [E][✘] 2 (at: 3|1 |hhaha)
-	4. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
-	5. [T][✘] borrow book 
-You have 5 tasks and you completed 3 of them
-Okey Dokey! Added: [D][✘] return book (by: Sunday)
+	2. [T][✘] borrow book 
+You have 2 tasks and you completed 1 of them
+Okey Dokey! Added: [D][✘] return book (by: Jan 23 2020 19:25)
 We did it! Good job little guy.
 	[T][✓] borrow book 
-Okey Dokey! Added: [E][✘] project meeting (at: Mon 2-4pm)
-Okey Dokey! Added: [D][✘] do homework (by: no idea :-p)
+Okey Dokey! Added: [E][✘] project meeting (at: Mar 05 2020 15:00)
+Okey Dokey! Added: [D][✘] do homework (by: May 17 2021 23:59)
 Here we go! These are the tasks you have:
 	1. [T][✓] 123 | lol| haha| 
-	2. [D][✓] 9312 (by: 0213|122 |hehe)
-	3. [E][✘] 2 (at: 3|1 |hhaha)
-	4. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
-	5. [T][✓] borrow book 
-	6. [D][✘] return book (by: Sunday)
-	7. [E][✘] project meeting (at: Mon 2-4pm)
-	8. [D][✘] do homework (by: no idea :-p)
-You have 8 tasks and you completed 4 of them
+	2. [T][✓] borrow book 
+	3. [D][✘] return book (by: Jan 23 2020 19:25)
+	4. [E][✘] project meeting (at: Mar 05 2020 15:00)
+	5. [D][✘] do homework (by: May 17 2021 23:59)
+You have 5 tasks and you completed 2 of them
 We did it! Good job little guy.
-	[D][✓] return book (by: Sunday)
+	[D][✓] return book (by: Jan 23 2020 19:25)
 We did it! Good job little guy.
-	[E][✓] project meeting (at: Mon 2-4pm)
+	[E][✓] project meeting (at: Mar 05 2020 15:00)
 Here we go! These are the tasks you have:
 	1. [T][✓] 123 | lol| haha| 
-	2. [D][✓] 9312 (by: 0213|122 |hehe)
-	3. [E][✘] 2 (at: 3|1 |hhaha)
-	4. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
-	5. [T][✓] borrow book 
-	6. [D][✓] return book (by: Sunday)
-	7. [E][✓] project meeting (at: Mon 2-4pm)
-	8. [D][✘] do homework (by: no idea :-p)
-You have 8 tasks and you completed 6 of them
-We did it! Good job little guy.
-	[D][✓] do homework (by: no idea :-p)
+	2. [T][✓] borrow book 
+	3. [D][✓] return book (by: Jan 23 2020 19:25)
+	4. [E][✓] project meeting (at: Mar 05 2020 15:00)
+	5. [D][✘] do homework (by: May 17 2021 23:59)
+You have 5 tasks and you completed 4 of them
+Oh, no! This task does not exist!
 Here we go! These are the tasks you have:
 	1. [T][✓] 123 | lol| haha| 
-	2. [D][✓] 9312 (by: 0213|122 |hehe)
-	3. [E][✘] 2 (at: 3|1 |hhaha)
-	4. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
-	5. [T][✓] borrow book 
-	6. [D][✓] return book (by: Sunday)
-	7. [E][✓] project meeting (at: Mon 2-4pm)
-	8. [D][✓] do homework (by: no idea :-p)
-You have 8 tasks and you completed 7 of them
-Mama Mia! You have already done this task~
-	[D][✓] do homework (by: no idea :-p)
+	2. [T][✓] borrow book 
+	3. [D][✓] return book (by: Jan 23 2020 19:25)
+	4. [E][✓] project meeting (at: Mar 05 2020 15:00)
+	5. [D][✘] do homework (by: May 17 2021 23:59)
+You have 5 tasks and you completed 4 of them
 Oh, no! I don't understand you, what are you trying to do?
 Oh, no! More arguments is needed!
 Oh, no! Task cannot be created without a name!
 Oh, no! Deadline's /by cannot be empty!
 Oh, no! Deadline's /by cannot be empty!
+Oh, no! Please follow the follow date format: yyyy-MM-dd HHmm
 Oh, no! More arguments is needed!
 Oh, no! Task cannot be created without a name!
 Oh, no! Event's /at cannot be empty!
 Oh, no! Event's /at cannot be empty!
+Oh, no! Please follow the follow date format: yyyy-MM-dd HHmm
 Oh, no! More arguments is needed!
 Oh, no! You didn't specify which task you are done with!
 Oh, no! This task does not exist!
-Mama Mia! You have already done this task~
-	[T][✓] borrow book 
+We did it! Good job little guy.
+	[D][✓] do homework (by: May 17 2021 23:59)
 Mama Mia! You have already done this task~
 	[T][✓] 123 | lol| haha| 
 Alrighty! The following task is gone!
-	[D][✓] 9312 (by: 0213|122 |hehe)
-Now you have 7 tasks in the list.
+	[T][✓] borrow book 
+Now you have 4 tasks in the list.
 Here we go! These are the tasks you have:
 	1. [T][✓] 123 | lol| haha| 
-	2. [E][✘] 2 (at: 3|1 |hhaha)
-	3. [D][✓] D\| (by: Wow| hello\ hehe\|\|)
-	4. [T][✓] borrow book 
-	5. [D][✓] return book (by: Sunday)
-	6. [E][✓] project meeting (at: Mon 2-4pm)
-	7. [D][✓] do homework (by: no idea :-p)
-You have 7 tasks and you completed 6 of them
+	2. [D][✓] return book (by: Jan 23 2020 19:25)
+	3. [E][✓] project meeting (at: Mar 05 2020 15:00)
+	4. [D][✓] do homework (by: May 17 2021 23:59)
+You have 4 tasks and you completed 4 of them
 Oh, no! I can't delete a task that does not exist!
 Alrighty! The following task is gone!
-	[T][✓] borrow book 
-Now you have 6 tasks in the list.
+	[D][✓] do homework (by: May 17 2021 23:59)
+Now you have 3 tasks in the list.
 Oh, no! I don't get what you are trying to say!
 Oh, no! You didn't specify which task you want to delete!
 Oh, no! You have to specify what to find!
 Oh, no! You have to specify what to find!
 Oh, no! There's no task that matches the keyword: zxc
 Here are the matching tasks in your list:
-	1. [D][✓] return book (by: Sunday)
+	1. [D][✓] return book (by: Jan 23 2020 19:25)
 Bye bye! See you in my gameses~

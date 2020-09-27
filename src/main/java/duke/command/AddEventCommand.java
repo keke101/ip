@@ -3,12 +3,14 @@ package duke.command;
 import duke.task.Event;
 import duke.task.Task;
 
+import java.time.LocalDateTime;
+
 public class AddEventCommand extends Command {
     public static final String COMMAND = "event";
     private final String name;
-    private final String at;
+    private final LocalDateTime at;
 
-    public AddEventCommand(String name, String at) {
+    public AddEventCommand(String name, LocalDateTime at) {
         this.name = name;
         this.at = at;
     }

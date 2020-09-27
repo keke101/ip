@@ -2,9 +2,14 @@ package duke.task;
 
 import duke.exception.DecodeTaskException;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 
 public class Task {
+    public static final String INPUT_DATETIME_FORMAT = "yyyy-MM-dd HHmm";
+    public static final String OUTPUT_DATETIME_FORMAT = "MMM dd yyyy HH:mm";
     private static final String TICK_SYMBOL = "\u2713";
     private static final String X_SYMBOL = "\u2718";
     protected static final String ESCAPED_PIPE_REPLACE = Matcher.quoteReplacement("\\|");
@@ -160,13 +165,18 @@ public class Task {
      * @throws DecodeTaskException One or more of the field(s) contain invalid data
      */
     private static Event decodeEvent(String[] fields) throws DecodeTaskException {
-        if (fields.length != 4) { //Invalid data
+        try {
+            if (fields.length != 4) { //Invalid data
+                throw new DecodeTaskException();
+            }
+            String name = fields[2];
+            boolean isDone = decodeIsDone(fields[1]);
+            String atStr = fields[3];
+            LocalDateTime at = LocalDateTime.parse(atStr);
+            return new Event(name, isDone, at);
+        } catch (DateTimeParseException dtpe) {
             throw new DecodeTaskException();
         }
-        String name = fields[2];
-        boolean isDone = decodeIsDone(fields[1]);
-        String at = fields[3];
-        return new Event(name, isDone, at);
     }
 
     /**
@@ -177,13 +187,18 @@ public class Task {
      * @throws DecodeTaskException One or more of the field(s) contain invalid data
      */
     private static Deadline decodeDeadline(String[] fields) throws DecodeTaskException {
-        if (fields.length != 4) { //Invalid data
+        try {
+            if (fields.length != 4) { //Invalid data
+                throw new DecodeTaskException();
+            }
+            String name = fields[2];
+            boolean isDone = decodeIsDone(fields[1]);
+            String byStr = fields[3];
+            LocalDateTime by = LocalDateTime.parse(byStr);
+            return new Deadline(name, isDone, by);
+        } catch (DateTimeParseException dtpe) {
             throw new DecodeTaskException();
         }
-        String name = fields[2];
-        boolean isDone = decodeIsDone(fields[1]);
-        String by = fields[3];
-        return new Deadline(name, isDone, by);
     }
 
     /**
@@ -211,6 +226,15 @@ public class Task {
      */
     protected static String escapePipe(String str) {
         return str.replaceAll("\\|", ESCAPED_PIPE_REPLACE);
+    }
+
+    /**
+     * Parse string as LocalDate
+     *
+     * @param dateStr date as string format
+     */
+    public static LocalDateTime parseDateStr(String dateStr) {
+        return LocalDateTime.parse(dateStr, DateTimeFormatter.ofPattern(INPUT_DATETIME_FORMAT));
     }
 
     /**

@@ -1,26 +1,27 @@
 list
 todo borrow book
 list
-deadline return book /by Sunday
-done 5
-event project meeting /at Mon 2-4pm
-deadline do homework /by no idea :-p
+deadline return book /by 2020-01-23 1925
+done 2
+event project meeting /at 2020-03-05 1500
+deadline do homework /by 2021-05-17 2359
 list
-done 6
-done 7
-list
-done 8
+done 3
+done 4
 list
 done 8
+list
 abc
 deadline
 deadline 
 deadline return book
 deadline return book /by
+deadline return book /by abcd
 event
 event 
 event project meeting
 event project meeting /at
+event project meeting /at abcd
 todo
 done
 done 1000
