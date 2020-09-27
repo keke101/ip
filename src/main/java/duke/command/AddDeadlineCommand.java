@@ -3,13 +3,15 @@ package duke.command;
 import duke.task.Deadline;
 import duke.task.Task;
 
+import java.time.LocalDateTime;
+
 public class AddDeadlineCommand extends Command {
     public static final String COMMAND = "deadline";
 
     private final String name;
-    private final String by;
+    private final LocalDateTime by;
 
-    public AddDeadlineCommand(String name, String by) {
+    public AddDeadlineCommand(String name, LocalDateTime by) {
         this.name = name;
         this.by = by;
     }
