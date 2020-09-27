@@ -1,5 +1,8 @@
 package duke.command;
 
+/**
+ * Result of a command executed
+ */
 public class CommandResult {
     public final Object retObj; //Object that is returned as a result of executing a command
     public final String feedback; //Feedback to be printed

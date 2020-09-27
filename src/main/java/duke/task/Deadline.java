@@ -3,6 +3,9 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Allows users to create tasks with a deadline
+ */
 public class Deadline extends Task {
 
     protected LocalDateTime by;
@@ -21,6 +24,7 @@ public class Deadline extends Task {
      * Creates a new deadline task with specified name, by and isDone value
      *
      * @param name Name of deadline task
+     * @param isDone Done status of task
      * @param by   When the task needs to be done by
      */
     public Deadline(String name, boolean isDone, LocalDateTime by) {

@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Allows users to create to-do tasks
+ */
 public class Todo extends Task {
 
     /**
