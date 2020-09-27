@@ -7,6 +7,7 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.exception.EmptyOrderException;
@@ -29,12 +30,15 @@ public class Parser {
     public static final String ERRMSG_DONE_ORDER_EMPTY = "Oh, no! You didn't specify which task you are done with!";
     public static final String ERRMSG_DEL_ORDER_EMPTY = "Oh, no! You didn't specify which task you want to delete!";
     public static final String ERRMSG_DATETIME_INVALID = String.format("Oh, no! Please follow the follow date format: %s", Task.INPUT_DATETIME_FORMAT);
+    public static final String ERRMSG_KEYWORD_EMPTY = "Oh, no! You have to specify what to find!";
 
     public Command parse(String input) {
         String[] temp = input.split(CMD_ARG_SEPARATOR, CMD_ARG_SPLIT_LIMIT);
         String command = temp[0];
         String rawArgs = temp.length == 2 ? temp[1] : null;
         switch (command) {
+        case FindCommand.COMMAND:
+            return prepareFind(rawArgs);
         case ListCommand.COMMAND:
             return prepareList();
         case DoneCommand.COMMAND:
@@ -51,6 +55,18 @@ public class Parser {
             return new ExitCommand();
         default:
             return new InvalidCommand(ERRMSG_UNKNOWN_CMD);
+        }
+    }
+
+    public Command prepareFind(String args) {
+        try {
+            String keyword = args.trim();
+            if (keyword.equals("")) {
+                return new InvalidCommand(ERRMSG_KEYWORD_EMPTY);
+            }
+            return new FindCommand(keyword);
+        } catch (NullPointerException npe) {
+            return new InvalidCommand(ERRMSG_KEYWORD_EMPTY);
         }
     }
 

@@ -84,4 +84,9 @@ Alrighty! The following task is gone!
 Now you have 3 tasks in the list.
 Oh, no! I don't get what you are trying to say!
 Oh, no! You didn't specify which task you want to delete!
+Oh, no! You have to specify what to find!
+Oh, no! You have to specify what to find!
+Oh, no! There's no task that matches the keyword: zxc
+Here are the matching tasks in your list:
+	1. [D][✓] return book (by: Jan 23 2020 19:25)
 Bye bye! See you in my gameses~

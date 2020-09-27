@@ -33,4 +33,8 @@ delete -1
 delete 4
 delete a
 delete
+find
+find  
+find zxc
+find book
 bye
