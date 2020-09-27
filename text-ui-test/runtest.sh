@@ -22,7 +22,7 @@ fi
 cp ./data/test_duke.txt ./data/duke.txt
 
 # compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src -Xlint:none -d ../bin ../src/main/java/duke/*.java ../src/main/java/duke/task/*.java ../src/main/java/duke/exception/*.java
+if ! javac -cp ../src -Xlint:none -d ../bin ../src/main/java/duke/*.java ../src/main/java/duke/task/*.java ../src/main/java/duke/exception/*.java ../src/main/java/duke/command/*.java ../src/main/java/duke/parser/*.java ../src/main/java/duke/storage/*.java ../src/main/java/duke/ui/*.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1
