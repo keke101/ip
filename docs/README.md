@@ -16,19 +16,25 @@
 ## Features 
 ### It's-a me, Mario!~
 Talks like Mario, acts like Mario. This program will get rid of your boredom by making it feels like you are really talking to the actual character!
+
 ### Different Type of Tasks
 Add tasks that suits your needs. Types of task includes:
 - **Todo**: Specifies tasks that needs to be done.
 - **Deadline**: Specifies tasks that have deadlines.
 - **Event**: Specifies tasks that happen on a certain date.
+
 ### Mark Tasks as Done
 Tasks can be marked as done so that it will be easier to differentiate between tasks that are done and not done.
+
 ### Delete Irrelevant Tasks
 Tasks that are no longer relevant can be deleted easily with a single command.
+
 ### Search with Ease
 Search tasks using keyword easily with a single command.
+
 ### Persistent Data
 Changes made to the task list are always saved to the disk and loaded when the program starts.
+
 ### Multi-Platform
 This program is supported across multiple platforms including but not limited to **Windows**, **Linux** and **macOS**.
 
@@ -171,11 +177,11 @@ Oh, no! Task cannot be created without a name!
 ```
 Oh, no! Event's /at cannot be empty!
 ```
-*- Evemt of task not specified.*
+*- Event of task not specified.*
 ```
 Oh, no! Please follow the follow date format: yyyy-MM-dd HHmm
 ```
-**Date specified is not in the required format.*
+*- Date specified is not in the required format.*
 ```
 Oh, no! More arguments is needed!
 ```
